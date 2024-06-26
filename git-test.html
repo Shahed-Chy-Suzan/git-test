@@ -3,15 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Git test</title>
+  <title>Git Test</title>
 </head>
 <body>
-  <h1>Git test</h1>
+  <h1 style="text-align: center;">Git Test</h1>
 
+  <hr>
+
+  <h2>Git Ammend</h2>
   <p>commit 1</p>
   <p>commit 2</p>
   <p>git ammend</p>
   <p>git ammend (git commit --ammend /force_push)</p>
+  <p>
+    <pre>
+      -- The `git commit --amend` command in Git is used to modify the most recent commit. This is particularly useful when you want to:
+      - Change the commit message of the latest commit.
+      - Add or remove files from the latest commit.
+      - Combine staged changes with the previous commit.
+      
+     -- git commit --amend  //This will open your default text editor where you can edit the commit message.
+        --
+
+     
+     -- git commit --amend -m "Initial commit with additional file"   //with -m flag
+        -- git push --force origin master   
+            //Since the commit history has changed (the commit hash is different), you need to force push the changes:
+     
+     -- Using `git commit --amend` and `git push --force` allows you to correct and refine your commit history, but it must be used responsibly to avoid disrupting the workflow of others.
+     
+     -- git commit --amend --no-edit    //The --no-edit option keeps the existing commit message.
+    </pre>
+  </p>
+  
+
+  <hr>
+
+
+  <h2>git rebase</h2>
+
+  <pre>
+    What is Git Rebase Interactive?
+    git rebase -i (interactive rebase) is a powerful Git command that allows you to rewrite and manipulate your commit history. It lets you modify individual commits, combine them, reorder them, or even remove them. This is particularly useful for cleaning up a series of commits before merging them into a main branch.
+
+    When to Use Interactive Rebase
+    Squashing Commits: Combine multiple commits into one.
+    Reordering Commits: Change the order of your commits.
+    Editing Commit Messages: Modify the messages of previous commits.
+    Removing Commits: Delete specific commits from the history.
+    Splitting Commits: Divide a single commit into multiple smaller commits.
+  </pre>
+
+
 
 
 </body>
