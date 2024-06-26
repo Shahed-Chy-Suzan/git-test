@@ -155,7 +155,7 @@ Using `git commit --amend` and `git push --force` allows you to correct and refi
 - **Removing Commits**: Delete specific commits from the history.
 - **Splitting Commits**: Divide a single commit into multiple smaller commits.
 
-### Example Scenario
+# Example Scenario With `Squash`
 
 Suppose you have a feature branch with several commits that you want to clean up before merging into the main branch.
 
@@ -196,7 +196,7 @@ Suppose you have a feature branch with several commits that you want to clean up
    ```
 
 4. **Save and Close the Editor**:
-   After saving and closing, another editor will open, allowing you to edit the commit message for the squashed commits.
+   After saving and closing (press `esc`, `:wq` //or `esc`, `shift + zz`), another editor will open, allowing you to edit the commit message for the squashed commits.
 
 5. **Edit the Commit Message**:
    Combine the commit messages into a single, cohesive message:
@@ -242,3 +242,101 @@ Suppose you have a feature branch with several commits that you want to clean up
 - **Use Wisely**: Interactive rebase is a powerful tool; use it carefully to avoid disrupting the workflow.
 
 Interactive rebase allows you to maintain a clean, understandable commit history, making your project easier to manage and collaborate on.
+
+
+<br>
+<br>
+
+
+# Scenario `reword` commit messages.
+
+You have a branch with a few commits, and you want to change the commit messages of these commits.
+
+### Step-by-Step Example
+
+1. **Initial Setup**: You have a branch `feature` with three commits.
+
+2. **Check Your Branch and Commit History**:
+   ```sh
+   git checkout feature
+   git log --oneline
+   ```
+   Example output:
+   ```
+   a1b2c3d Third commit
+   d4e5f6g Second commit
+   h1i2j3k First commit
+   ```
+
+3. **Start Interactive Rebase**:
+   ```sh
+   git rebase -i HEAD~3
+   ```
+   This command opens an editor with the last three commits listed.
+
+4. **Interactive Rebase Editor**:
+   ```
+   pick h1i2j3k First commit
+   pick d4e5f6g Second commit
+   pick a1b2c3d Third commit
+   ```
+   Change `pick` to `reword` (or `r`) for the commits you want to change the messages of:
+   ```
+   pick h1i2j3k First commit
+   reword d4e5f6g Second commit
+   reword a1b2c3d Third commit
+   ```
+
+5. **Save and Close the Editor**:
+   After saving and closing (press `esc`, `:wq` //or `esc`, `shift + zz`), Git will open an editor for each commit you marked as `reword`.
+
+6. **Edit the Commit Messages**:
+   For the second commit:
+   ```
+   Second commit
+   ```
+   Change to:
+   ```
+   Improved the functionality
+   ```
+   Save and close the editor.
+
+   For the third commit:
+   ```
+   Third commit
+   ```
+   Change to:
+   ```
+   Added unit tests
+   ```
+   Save and close the editor.
+
+7. **Finish the Rebase**:
+   Git will apply the changes. If there are conflicts, resolve them as prompted, and continue the rebase:
+   ```sh
+   git rebase --continue
+   ```
+
+8. **Push the Changes**:
+   If the branch has already been pushed to a remote repository, force push the changes:
+   ```sh
+   git push --force origin feature
+   ```
+
+### Detailed Explanation
+
+1. **Check Your Branch and Commit History**: Ensure you are on the correct branch and view the commit history.
+
+2. **Start Interactive Rebase**: The `HEAD~3` argument indicates you want to rebase the last three commits. This opens an editor with a list of commits.
+
+3. **Interactive Rebase Editor**: Change `pick` to `reword` for the commits you want to change the messages of. The commits you leave as `pick` will remain unchanged.
+
+4. **Save and Close the Editor**: Git processes the instructions and opens an editor for each `reword` commit.
+
+5. **Edit the Commit Messages**: Change the commit messages as desired, then save and close the editor for each commit.
+
+6. **Finish the Rebase**: If there are no conflicts, the rebase completes. Otherwise, resolve conflicts and continue.
+
+7. **Push the Changes**: Use `--force` to push the rewritten commit history to the remote repository.
+
+Using `git rebase -i` to reword commits allows you to maintain a clean and meaningful commit history, making your project easier to manage and collaborate on.
