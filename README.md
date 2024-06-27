@@ -159,7 +159,7 @@ Using `git commit --amend` and `git push --force` allows you to correct and refi
 # Scenario and Example With `reword` commit messages.
 
 You have a branch with a few commits, and you want to change the commit messages of these commits.
-One of the very popular use cases of interactive rebase is that you can edit an old commit message after the fact. You might be aware that git commit --amend also allows you to change a commit’s message — but only if it’s the very latest commit. For any commit older than that, we have to use interactive rebase!
+One of the very popular use cases of interactive rebase is that you can edit an old commit message after the fact. You might be aware that `git commit --amend` also allows you to change a commit’s message — but only if it’s the very latest commit. For any commit older than that, we have to use interactive rebase!
 
 ### Step-by-Step Example
 
