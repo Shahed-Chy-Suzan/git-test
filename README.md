@@ -419,3 +419,7 @@ You have a branch with several commits, and you want to remove (drop) a specific
 6. **Push the Changes**: Use `--force` to push the rewritten commit history to the remote repository.
 
 Using `git rebase -i` to drop commits allows you to maintain a clean and meaningful commit history, making your project easier to manage and collaborate on.
+
+
+<br>
+<br>
