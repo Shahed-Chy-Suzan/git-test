@@ -156,7 +156,7 @@ Using `git commit --amend` and `git push --force` allows you to correct and refi
 - **Splitting Commits**: Divide a single commit into multiple smaller commits.
 
 
-# Scenario `reword` commit messages.
+# Scenario and Example With `reword` commit messages.
 
 You have a branch with a few commits, and you want to change the commit messages of these commits.
 One of the very popular use cases of interactive rebase is that you can edit an old commit message after the fact. You might be aware that git commit --amend also allows you to change a commit’s message — but only if it’s the very latest commit. For any commit older than that, we have to use interactive rebase!
@@ -255,7 +255,7 @@ Using `git rebase -i` to reword commits allows you to maintain a clean and meani
 
 
 
-# Scenario `drop`
+# Scenario and Example With `drop`
 
 You have a branch with several commits, and you want to remove (drop) a specific commit from the history.
 
@@ -349,7 +349,7 @@ Using `git rebase -i` to drop commits allows you to maintain a clean and meaning
 
 
 
-# Example Scenario With `Squash`
+# Scenario Example With `squash`
 
 Suppose you have a feature branch with several commits that you want to clean up before merging into the main branch.
 squash/combine multiple commits.
@@ -604,5 +604,147 @@ Let's go through the process of squashing the three specific commits: "21cd881 d
 
 By following these steps, you'll have successfully squashed the "drop added in readme," "br 1 added," and "br 2 added" commits into a single commit.
 
+
+<br>
+<br>
 <br>
 
+
+# Scenario and Example With `edit`
+
+Certainly! Let's explore how to use `git rebase -i` with the `edit` command. Interactive rebase (`git rebase -i`) is a powerful tool for rewriting commit history in Git. The `edit` command within an interactive rebase allows you to stop at a particular commit, modify it, and then continue the rebase process. This is useful for making changes to a specific commit after it has been created.
+
+### Step-by-Step Example
+
+Let's say you have the following commit history:
+
+```sh
+git log --oneline
+```
+```
+e3a1f50 (HEAD -> feature) Commit 4
+d2b3c9a Commit 3
+c1d2e3f Commit 2
+b1a2b3c Commit 1
+```
+
+You want to edit "Commit 2" to change its content.
+
+#### Step 1: Start Interactive Rebase
+
+Start an interactive rebase, specifying the parent of the commit you want to edit. In this case, you want to edit the third commit, so you will start the rebase from `HEAD~3`.
+
+```sh
+git rebase -i HEAD~3
+```
+
+#### Step 2: Modify the Interactive Rebase Editor
+
+This command will open an editor with a list of commits:
+
+```
+pick b1a2b3c Commit 1
+pick c1d2e3f Commit 2
+pick d2b3c9a Commit 3
+pick e3a1f50 Commit 4
+```
+
+Change `pick` to `edit` (or `e`) for the commit you want to modify:
+
+```
+pick b1a2b3c Commit 1
+edit c1d2e3f Commit 2
+pick d2b3c9a Commit 3
+pick e3a1f50 Commit 4
+```
+
+Save and close the editor.
+
+#### Step 3: Git Stops at the Specified Commit
+
+Git will stop at "Commit 2," allowing you to make changes:
+
+```
+Stopped at c1d2e3f... Commit 2
+You can amend the commit now, with:
+
+    git commit --amend
+
+Once you're satisfied with your changes, run:
+
+    git rebase --continue
+```
+
+#### Step 4: Make Your Changes
+
+Make any necessary changes to your working directory. For example, let's say you want to modify a file:
+
+```sh
+echo "Additional content" >> file.txt
+```
+
+#### Step 5: Amend the Commit
+
+Stage the changes and amend the commit:
+
+```sh
+git add file.txt
+git commit --amend
+```
+
+This will open an editor to modify the commit message if needed. After saving and closing the editor, the changes are now part of "Commit 2."
+
+#### Step 6: Continue the Rebase
+
+Continue the rebase process:
+
+```sh
+git rebase --continue
+```
+
+Git will reapply the remaining commits on top of your amended commit. If there are any conflicts, resolve them as prompted and continue the rebase:
+
+```sh
+git rebase --continue
+```
+
+#### Step 7: Push the Changes
+
+If the branch has already been pushed to a remote repository, force push the changes:
+
+```sh
+git push --force origin feature
+```
+
+### Detailed Explanation
+
+1. **Start Interactive Rebase**: Begin an interactive rebase with `HEAD~3` to include the commits up to and including "Commit 2."
+2. **Modify the Interactive Rebase Editor**: Change `pick` to `edit` for the commit you want to modify.
+3. **Git Stops at the Specified Commit**: Git pauses the rebase at "Commit 2," allowing you to make changes.
+4. **Make Your Changes**: Modify the files as needed in your working directory.
+5. **Amend the Commit**: Stage the changes and amend the commit using `git commit --amend`.
+6. **Continue the Rebase**: Resume the rebase process with `git rebase --continue`, resolving any conflicts as they arise.
+7. **Push the Changes**: Force push the updated commit history to the remote repository.
+
+Using `git rebase -i` with the `edit` command allows you to modify specific commits in your history, providing flexibility in managing your project's commit history.
+
+### Practice History of `edit`
+```sh
+  -- edit   //edit a specific commit/file
+    -- git log --oneline
+    -- git rebase -i 6fabd0d  //j commit edit korbo tar agher commit hash
+    -- press `i`
+    -- `edit` instead of `pick`  //for edit specific commit code/file //(in new window of editor)
+    -- press `esc`, `:wq` //or `esc`, `shift + zz`
+    -- then oi file e giye edit kore nibo code.
+    -- git add .
+    -- git status //checking edited/updated code tracked or not
+    -- git commit --amend  // taile windown eshe commit messg ta edit korte bolbe.
+    -- git rebase --continue
+    -- git push --force origin feature
+```
+
+
+<br>
+<br>
+<br>
