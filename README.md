@@ -149,10 +149,10 @@ Using `git commit --amend` and `git push --force` allows you to correct and refi
 
 ### When to Use Interactive Rebase
 
-- **Squashing Commits**: Combine multiple commits into one.
+- **Squashing Commits (squash)**: Combine multiple commits into one.
 - **Reordering Commits**: Change the order of your commits.
-- **Editing Commit Messages**: Modify the messages of previous commits.
-- **Removing Commits**: Delete specific commits from the history.
+- **Editing Commit Messages (reword)**: Modify the messages of previous commits. //edit an old commit message
+- **Removing Commits (drop)**: Delete specific commits from the history.
 - **Splitting Commits**: Divide a single commit into multiple smaller commits.
 
 
