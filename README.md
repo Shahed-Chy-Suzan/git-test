@@ -155,6 +155,17 @@ Using `git commit --amend` and `git push --force` allows you to correct and refi
 - **Removing Commits (drop)**: Delete specific commits from the history.
 - **Splitting Commits**: Divide a single commit into multiple smaller commits.
 
+### Sample command which are frequently used in Rebase
+```sh
+git rebase -i 6fabd0d
+git rebase --continue
+git rebase --abort
+git rebase --edit-todo
+git commit --amend
+git commit --amend --edit-todo
+```
+
+<br>
 
 # Scenario and Example With `reword` commit messages.
 
@@ -745,6 +756,5 @@ Using `git rebase -i` with the `edit` command allows you to modify specific comm
 ```
 
 
-<br>
 <br>
 <br>
