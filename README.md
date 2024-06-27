@@ -340,3 +340,5 @@ You have a branch with a few commits, and you want to change the commit messages
 7. **Push the Changes**: Use `--force` to push the rewritten commit history to the remote repository.
 
 Using `git rebase -i` to reword commits allows you to maintain a clean and meaningful commit history, making your project easier to manage and collaborate on.
+
+<p>p tag </p>
