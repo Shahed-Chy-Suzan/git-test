@@ -259,6 +259,20 @@ Using `git rebase -i` to reword commits allows you to maintain a clean and meani
 
 You have a branch with several commits, and you want to remove (drop) a specific commit from the history.
 
+
+Deleting an Unwanted Commit:
+
+Interactive rebase also allows you to delete an old commit from your history that you don’t need (or want) anymore. Just imagine you have accidentally included a personal password in a recent commit: sensitive information like this should not, in most cases, be included in a codebase.
+
+Also remember that simply deleting the information and committing again doesn’t really solve your problem: this would mean the password is still saved in the repository, in the form of your old commit. What you really want is to cleanly and completely delete this piece of data from the repository altogether!
+
+`git rebase -i <6bcf266b commit hash which have to be deleted>`
+
+This time, we’re using the drop action keyword to get rid of the unwanted commit. Alternatively, in this special case, we could also simply delete the whole line from the editor. If a line (representing a commit) is not present anymore when saving and closing the window, Git will delete the respective commit.
+
+However you choose to do it, after you’ve saved and closed the editor window, the commit will be deleted from your repository’s history!
+
+
 ### Step-by-Step Example
 
 1. **Initial Setup**: You have a branch `feature` with four commits.
