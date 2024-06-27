@@ -158,6 +158,7 @@ Using `git commit --amend` and `git push --force` allows you to correct and refi
 # Example Scenario With `Squash`
 
 Suppose you have a feature branch with several commits that you want to clean up before merging into the main branch.
+squash/combine multiple commits.
 
 1. **Initial Setup**: You have a branch `feature` with three commits.
 2. **Interactive Rebase**: You want to squash the second and third commits into the first commit and edit their messages.
@@ -251,6 +252,7 @@ Interactive rebase allows you to maintain a clean, understandable commit history
 # Scenario `reword` commit messages.
 
 You have a branch with a few commits, and you want to change the commit messages of these commits.
+One of the very popular use cases of interactive rebase is that you can edit an old commit message after the fact. You might be aware that git commit --amend also allows you to change a commit’s message — but only if it’s the very latest commit. For any commit older than that, we have to use interactive rebase!
 
 ### Step-by-Step Example
 
@@ -341,4 +343,79 @@ You have a branch with a few commits, and you want to change the commit messages
 
 Using `git rebase -i` to reword commits allows you to maintain a clean and meaningful commit history, making your project easier to manage and collaborate on.
 
-<p>p tag </p>
+<br>
+<br>
+
+
+# Scenario `drop`
+
+You have a branch with several commits, and you want to remove (drop) a specific commit from the history.
+
+### Step-by-Step Example
+
+1. **Initial Setup**: You have a branch `feature` with four commits.
+
+2. **Check Your Branch and Commit History**:
+   ```sh
+   git checkout feature
+   git log --oneline
+   ```
+   Example output:
+   ```
+   a1b2c3d Fourth commit
+   d4e5f6g Third commit
+   h1i2j3k Second commit
+   l4m5n6o First commit
+   ```
+
+3. **Start Interactive Rebase**:
+   ```sh
+   git rebase -i HEAD~4
+   ```
+   This command opens an editor with the last four commits listed.
+
+4. **Interactive Rebase Editor**:
+   ```
+   pick l4m5n6o First commit
+   pick h1i2j3k Second commit
+   pick d4e5f6g Third commit
+   pick a1b2c3d Fourth commit
+   ```
+   Change `pick` to `drop` (or `d`) for the commit you want to remove. For example, to drop the second commit:
+   ```
+   pick l4m5n6o First commit
+   drop h1i2j3k Second commit
+   pick d4e5f6g Third commit
+   pick a1b2c3d Fourth commit
+   ```
+
+5. **Save and Close the Editor**:
+   After saving and closing (press `esc`, `:wq` //or `esc`, `shift + zz`), Git will reapply the commits, skipping the one marked as `drop`.
+
+6. **Finish the Rebase**:
+   Git will rewrite the history, excluding the dropped commit. If there are conflicts, resolve them as prompted, and continue the rebase:
+   ```sh
+   git rebase --continue
+   ```
+
+7. **Push the Changes**:
+   If the branch has already been pushed to a remote repository, force push the changes:
+   ```sh
+   git push --force origin feature
+   ```
+
+### Detailed Explanation
+
+1. **Check Your Branch and Commit History**: Ensure you are on the correct branch and view the commit history.
+
+2. **Start Interactive Rebase**: The `HEAD~4` argument indicates you want to rebase the last four commits. This opens an editor with a list of commits.
+
+3. **Interactive Rebase Editor**: Change `pick` to `drop` for the commits you want to remove. The commits marked as `drop` will be excluded from the history.
+
+4. **Save and Close the Editor**: Git processes the instructions and replays the remaining commits, skipping the dropped ones.
+
+5. **Finish the Rebase**: If there are no conflicts, the rebase completes. Otherwise, resolve conflicts and continue.
+
+6. **Push the Changes**: Use `--force` to push the rewritten commit history to the remote repository.
+
+Using `git rebase -i` to drop commits allows you to maintain a clean and meaningful commit history, making your project easier to manage and collaborate on.
