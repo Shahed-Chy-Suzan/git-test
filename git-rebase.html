@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Git Test</title>
+</head>
+
+<body>
+  <h1 style="text-align: center;">Git Test</h1>
+
+  <hr>
+
+  <!-- --------------------------------------------------------------------------------------------- -->
+                            <!-- Git Amend -->
+  <!-- --------------------------------------------------------------------------------------------- -->
+
+  <h2>Git Amend</h2>
+  <p>commit 1</p>
+  <p>commit 2</p>
+  <p>git amend</p>
+  <p>git amend (git commit --amend /force_push)</p>
+  <p>
+  <pre>
+      -- The `git commit --amend` command in Git is used to modify the most recent commit. This is particularly useful when you want to:
+      - Change the commit message of the latest commit.
+      - Add or remove files from the latest commit.
+      - Combine staged changes with the previous commit.
+      
+     -- git commit --amend  //This will open your default text editor where you can edit the commit message.
+        --
+
+     
+     -- git commit --amend -m "Initial commit with additional file"   //with -m flag
+        -- git push --force origin master   
+            //Since the commit history has changed (the commit hash is different), you need to force push the changes:
+     
+     -- Using `git commit --amend` and `git push --force` allows you to correct and refine your commit history, but it must be used responsibly to avoid disrupting the workflow of others.
+     
+     -- git commit --amend --no-edit    //The --no-edit option keeps the existing commit message.
+    </pre>
+  </p>
+
+  <hr>
+
+
+
+  <!-- --------------------------------------------------------------------------------------------- -->
+                            <!-- git rebase -->
+  <!-- --------------------------------------------------------------------------------------------- -->
+  <h2>git rebase</h2>
+
+  <pre>
+    What is Git Rebase Interactive?
+    git rebase -i (interactive rebase) is a powerful Git command that allows you to rewrite and manipulate your commit history. It lets you modify individual commits, combine them, reorder them, or even remove them. This is particularly useful for cleaning up a series of commits before merging them into a main branch.
+
+    When to Use Interactive Rebase
+    Squashing Commits: Combine multiple commits into one.
+    Reordering Commits: Change the order of your commits.
+    Editing Commit Messages: Modify the messages of previous commits.
+    Removing Commits: Delete specific commits from the history.
+    Splitting Commits: Divide a single commit into multiple smaller commits.
+
+
+    -- My README.md file for git rebasea: https://github.com/Shahed-Chy-Suzan/git-test/tree/feature
+  
+  
+    - Squashing Commits (squash): Combine multiple commits into one.
+    - Reordering Commits: Change the order of your commits.
+    - Editing Commit Messages (reword): Modify the messages of previous commits. //edit an old commit message
+    - Removing Commits (drop): Delete specific commits from the history.
+    - Splitting Commits: Divide a single commit into multiple smaller commits.
+
+  
+    -- reword     //for edit specific commit message
+      -- git log --oneline
+      -- git rebase -i HEAD~2   //git rebase -i e57060e (j commit edit korbo tar agher commit hash)
+      -- press `i`
+      -- reword   //for edit specific commit message //(in new window of editor)
+      -- press `esc`, `:wq` //or `esc`, `shift + zz`
+      -- press `i`
+      -- write new message for that commit (in new window of editor)
+      -- press `esc`, `:wq` //or `esc`, `shift + zz`
+      -- git push --force origin feature
+      
+    -- edit   //edit a specific commit/file
+      -- git log --oneline
+      -- git rebase -i 6fabd0d  //j commit edit korbo tar agher commit hash
+      -- press `i`
+      -- `edit` instead of `pick`  //for edit specific commit code/file //(in new window of editor)
+      -- press `esc`, `:wq` //or `esc`, `shift + zz`
+      -- then oi file e giye edit kore nibo code.
+      -- git add .
+      -- git status //checking edited/updated code tracked or not
+      -- git commit --amend  // taile windown eshe commit messg ta edit korte bolbe.
+      -- git rebase --continue
+      -- git push --force origin feature
+
+  </pre>
+
+
+  <hr>
+
+  
+  <p>rebase 1</p>
+
+  <p>edit with rebase</p>
+
+
+  <hr>
+
+  <!-- --------------------------------------------------------------------------------------------- -->
+                            <!-- Random Resource -->
+  <!-- --------------------------------------------------------------------------------------------- -->
+
+  <h3>Random Resource</h3>
+  <ol>
+    <li>
+      <a href="https://www.sitepoint.com/git-interactive-rebase-guide/" target="_blank">https://www.sitepoint.com/git-interactive-rebase-guide/</a>
+    </li>
+    <li>
+      <a href="https://about.gitlab.com/blog/2020/11/23/keep-git-history-clean-with-interactive-rebase/#correcting-an-old-commit-message-with-git-rebase-interactive" target="_blank">https://about.gitlab.com/blog/2020/11/23/keep-git-history-clean-with-interactive-rebase/#correcting-an-old-commit-message-with-git-rebase-interactive</a>
+    </li>
+    <li>
+      <a href="https://www.atlassian.com/git/tutorials/merging-vs-rebasing" target="_blank">https://www.atlassian.com/git/tutorials/merging-vs-rebasing</a>
+    </li>
+    <li>
+      <a href="https://www.freecodecamp.org/news/git-rebase-handbook/" target="_blank">https://www.freecodecamp.org/news/git-rebase-handbook/</a>
+    </li>
+    <li>
+      <a href="https://www.youtube.com/watch?v=3VFsitGUB3s" target="_blank">https://www.youtube.com/watch?v=3VFsitGUB3s</a>
+    </li>
+    <li>
+      <a href="https://www.youtube.com/watch?v=qsTthZi23VE" target="_blank">https://www.youtube.com/watch?v=qsTthZi23VE</a>
+    </li>
+
+  </ol>
+
+
+</body>
+
+</html>
