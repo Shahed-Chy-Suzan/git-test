@@ -1,3 +1,6 @@
+## My Blog
+   - Git Interactive Rebase: <a target="_blank" href="https://docs.google.com/document/d/1MESO-7ETPdW2ALj5FTlOJFQhruebnsXzSuUInidezhk/edit">My Blog-Git Interactive Rebase</a>
+<br>
 <div align="center">
 
    # git amend
@@ -208,7 +211,7 @@ One of the very popular use cases of interactive rebase is that you can edit an 
    ```
 
 5. **Save and Close the Editor**:
-   After saving and closing (press `esc`, `:wq` //or `esc`, `shift + zz`), Git will open an editor for each commit you marked as `reword`.
+   After saving and closing (press `esc`, `:wq` //or `:x` //or `esc`, `shift + zz`), Git will open an editor for each commit you marked as `reword`.
 
 6. **Edit the Commit Messages**:
    For the second commit:
@@ -323,7 +326,7 @@ However you choose to do it, after you’ve saved and closed the editor window, 
    ```
 
 5. **Save and Close the Editor**:
-   After saving and closing (press `esc`, `:wq` //or `esc`, `shift + zz`), Git will reapply the commits, skipping the one marked as `drop`.
+   After saving and closing (press `esc`, `:wq` //or `:x` //or `esc`, `shift + zz`), Git will reapply the commits, skipping the one marked as `drop`.
 
 6. **Finish the Rebase**:
    Git will rewrite the history, excluding the dropped commit. If there are conflicts, resolve them as prompted, and continue the rebase:
@@ -402,7 +405,7 @@ squash/combine multiple commits.
    ```
 
 4. **Save and Close the Editor**:
-   After saving and closing (press `esc`, `:wq` //or `esc`, `shift + zz`), another editor will open, allowing you to edit the commit message for the squashed commits.
+   After saving and closing (press `esc`, `:wq` //or `:x` //or `esc`, `shift + zz`), another editor will open, allowing you to edit the commit message for the squashed commits.
 
 5. **Edit the Commit Message**:
    Combine the commit messages into a single, cohesive message:
@@ -489,7 +492,7 @@ Sure! Let's go through the process of squashing the commits "br 2 added" and "br
    Change `pick` to `squash` for the commit "br 2 added". This will combine it into the "br 1 added" commit above it.
 
 4. **Save and Close the Editor**:
-   After saving and closing (press `esc`, `:wq` //or `esc`, `shift + zz`), another editor will open, allowing you to edit the combined commit message.
+   After saving and closing (press `esc`, `:wq` //or `:x` //or `esc`, `shift + zz`), another editor will open, allowing you to edit the combined commit message.
 
 5. **Edit the Combined Commit Message**:
    Combine the commit messages into a single, cohesive message. For example:
@@ -746,7 +749,7 @@ Using `git rebase -i` with the `edit` command allows you to modify specific comm
     -- git rebase -i 6fabd0d  //j commit edit korbo tar agher commit hash
     -- press `i`
     -- `edit` instead of `pick`  //for edit specific commit code/file //(in new window of editor)
-    -- press `esc`, `:wq` //or `esc`, `shift + zz`
+    -- press `esc`, `:wq` //or `:x` //or `esc`, `shift + zz`
     -- then oi file e giye edit kore nibo code.
     -- git add .
     -- git status //checking edited/updated code tracked or not
